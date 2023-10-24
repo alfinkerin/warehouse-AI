@@ -12,13 +12,17 @@ import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 
 type IFormInput = {
-  email: string;
-  password: string;
-  username: string;
+  name: string;
+  stock: string;
+  price: string;
 };
 
-export default function Register() {
-  const [typePassword, setTypePassword] = useState(true);
+type PropsForm = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  mutate: any;
+};
+
+export default function AddProduct({ setOpen, mutate }: PropsForm) {
   const [isSubmit, setIsSubmit] = useState(false);
   const {
     handleSubmit,
@@ -31,94 +35,78 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setIsSubmit(true);
-    const response = await fetch("/api/user", {
+    const response = await fetch("/api/product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
+        name: data.name,
+        stock: parseInt(data.stock),
+        price: parseInt(data.price),
       }),
     });
 
     if (response.status === 201) {
-      reset({ email: "", username: "", password: "" });
-      toast.success("Registration Successful", {
+      reset({ name: "", stock: "", price: "" });
+      toast.success("Add Product Successful", {
         position: toast.POSITION.TOP_CENTER,
       });
-
-      router.push("/screen/auth/login");
+      mutate("/api/product");
       setIsSubmit(false);
+      setOpen(false);
     } else {
-      console.log("gagal");
       setIsSubmit(false);
     }
   };
 
   return (
     <>
-      <form
-        className="w-full h-full flex justify-center items-center "
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Card customCss="w-[70%] border-none">
-          <div className="card-title self-center uppercase">register</div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Card customCss="w-full border-none">
           <Controller
-            name="username"
+            name="name"
             control={control}
             rules={{ required: true, minLength: 1 }}
             render={({ field }) => (
               <TextInput
                 type="text"
-                label="username"
-                placeholder="masukan username"
+                label="name"
+                placeholder="masukan nama produk"
                 {...field}
               />
             )}
           />
-          {errors.username && (
-            <p className="text-red-500">Username is required</p>
-          )}
+          {errors.name && <p className="text-red-500">Name is required</p>}
           <Controller
-            name="email"
+            name="stock"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
               <TextInput
-                type="email"
-                label="email"
-                placeholder="masukan email"
+                type="number"
+                label="stock"
+                placeholder="masukan stock"
                 {...field}
               />
             )}
           />
-          {errors.email && <p className="text-red-500">Email is required</p>}
+          {errors.stock && <p className="text-red-500">Stock is required</p>}
+
           <Controller
-            name="password"
+            name="price"
             control={control}
-            rules={{ required: true, minLength: 6 }}
+            rules={{ required: true }}
             render={({ field }) => (
               <TextInput
-                type={typePassword ? "password" : "text"}
-                label="password"
-                placeholder="password"
-                Icon={
-                  typePassword ? (
-                    <PiEyeClosedLight size="20" />
-                  ) : (
-                    <PiEyeLight size="20" />
-                  )
-                }
-                onClick={() => setTypePassword(!typePassword)}
+                type="number"
+                label="price"
+                placeholder="masukan harga"
                 {...field}
               />
             )}
           />
-          {errors.password && (
-            <p className="text-red-500">Password is required</p>
-          )}
+          {errors.price && <p className="text-red-500">Price is required</p>}
 
           <Button disable={isSubmit} title="Submit" />
         </Card>

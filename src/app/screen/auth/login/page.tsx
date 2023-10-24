@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 import { PiEyeClosedLight } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
@@ -56,10 +57,10 @@ export default function Login() {
   return (
     <>
       <form
-        className="w-full flex justify-center "
+        className="w-full h-full flex justify-center items-center "
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Card customCss="w-[30%]">
+        <Card customCss="w-[70%] border-none">
           <div className="card-title self-center uppercase">Login</div>
           <div className="self-center text-base ">
             Warehouse Management with AI
@@ -104,6 +105,12 @@ export default function Login() {
             <p className="text-red-500">Password is required</p>
           )}
           <Button disable={isSubmit} title="Login" />
+          <p className="text-base text-center">
+            Dont have an account ?{" "}
+            <Link className="text-blue-400" href="/screen/auth/register">
+              Register
+            </Link>
+          </p>
         </Card>
       </form>
     </>

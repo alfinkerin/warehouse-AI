@@ -19,3 +19,12 @@ model User {
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
+
+model Product {
+  id String @id @default(cuid())
+  name String
+  stock Int
+  price Int
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}

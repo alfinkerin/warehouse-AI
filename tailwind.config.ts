@@ -20,7 +20,7 @@ const config: Config = {
     themes: [
       {
         mytheme: {
-          primary: "#36323D",
+          primary: "#A951A3",
           "base-100": "#d6d3d1",
         },
       },

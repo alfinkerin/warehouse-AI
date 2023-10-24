@@ -9,6 +9,7 @@ type ButtonProps = {
   icon?: ReactNode;
   iconPosition?: string;
   customCss?: string;
+  onClick?: any;
 };
 
 function Button({
@@ -20,11 +21,16 @@ function Button({
   icon,
   iconPosition,
   customCss,
+  onClick,
 }: ButtonProps) {
+  console.log(onClick);
   return (
     <>
       {disable === false ? (
-        <button className={`${customCss} btn btn-active btn-primary my-2`}>
+        <button
+          onClick={onClick}
+          className={`${customCss} btn btn-active btn-primary my-2`}
+        >
           {title}
         </button>
       ) : (
