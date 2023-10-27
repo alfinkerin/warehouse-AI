@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 
 import { redirect } from "next/navigation";
-import { authOptions } from "@/app/lib/auth";
+import { authOptions } from "@/lib/auth";
 
 type LayoutAdminProps = {
   children: ReactNode | ReactNode[];

@@ -28,3 +28,14 @@ model Product {
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
+
+model Store {
+  id String @id @default(cuid())
+  name String
+  img String
+  address String
+  email String @unique
+  phone String
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}

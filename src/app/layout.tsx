@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import { EdgeStoreProvider } from "./lib/edgestore";
+import { EdgeStoreProvider } from "../lib/edgestore";
 
 import "react-toastify/dist/ReactToastify.css";
 

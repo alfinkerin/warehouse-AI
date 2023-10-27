@@ -1,4 +1,4 @@
-import { db } from "@/app/lib/db";
+import { db } from "@/lib/db";
 import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 import * as z from "zod";

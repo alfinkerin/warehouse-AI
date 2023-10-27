@@ -23,13 +23,12 @@ function Button({
   customCss,
   onClick,
 }: ButtonProps) {
-  console.log(onClick);
   return (
     <>
       {disable === false ? (
         <button
           onClick={onClick}
-          className={`${customCss} btn btn-active btn-primary my-2`}
+          className={`btn ${customCss}  btn-primary my-2`}
         >
           {title}
         </button>

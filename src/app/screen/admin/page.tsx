@@ -4,14 +4,17 @@ import { menuSlide } from "@/app/constant/sliderMenu";
 import React, { useState } from "react";
 import Lottie from "lottie-react";
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
+import { useSession } from "next-auth/react";
 
-import animationData from "@/components/Animation/ppl.json";
+import animationData from "@/components/Animation/user.json";
 import Navbar from "@/components/Navbar";
 import Dashboard from "./dashboard/page";
 import { useStore } from "@/store/page";
 import Product from "./product/page";
 import Payroll from "./payroll/page";
 import History from "./history/page";
+import DemoPage from "./testing/page";
+import Store from "./store/page";
 
 function AdminPage() {
   const [isSliderMenu, SetIsSliderMenu] = useState(true);
@@ -19,17 +22,22 @@ function AdminPage() {
     state.title,
     state.updateTitle,
   ]);
+  const { data: session, status } = useSession();
 
   const switchPage = () => {
     switch (title) {
       case "Dashboard":
         return <Dashboard />;
+      case "Store":
+        return <Store />;
       case "Product":
         return <Product />;
       case "History":
         return <History />;
       case "Payroll":
         return <Payroll />;
+      case "Testing":
+        return <DemoPage />;
     }
   };
 
@@ -64,7 +72,7 @@ function AdminPage() {
                   onClick={() => updateTitle(menu.title)}
                 >
                   <div
-                    className="tooltip tooltip-right tooltip-info text-white"
+                    className="tooltip tooltip-right tooltip-secondary"
                     data-tip={isSliderMenu === false ? menu?.title : null}
                   >
                     <menu.icon size={25} />
@@ -76,9 +84,22 @@ function AdminPage() {
                 </div>
               ))}
             </div>
-            <div className=" w-44">
-              {isSliderMenu === true && (
-                <Lottie animationData={animationData} />
+            <div className="w-full items-center">
+              {isSliderMenu === true ? (
+                <div className="flex items-center">
+                  <div className="w-14">
+                    <Lottie animationData={animationData} />
+                  </div>
+
+                  <div className="text-base">{session?.user?.username}</div>
+                </div>
+              ) : (
+                <div
+                  className="tooltip tooltip-right tooltip-secondary"
+                  data-tip={session?.user?.username}
+                >
+                  <Lottie animationData={animationData} />
+                </div>
               )}
             </div>
           </div>

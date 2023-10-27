@@ -1,4 +1,4 @@
-import { db } from "@/app/lib/db";
+import { db } from "@/lib/db";
 import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 import * as z from "zod";
@@ -43,12 +43,42 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const allProduct = await db.product.findMany();
+    const allProduct = await db.product.findMany({
+      orderBy: { createdAt: "desc" },
+    });
 
     return NextResponse.json(
       {
         data: allProduct,
         message: "get product succesfully",
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const url = new URL(req.url).searchParams;
+    const id = String(url.get("id")) || "";
+
+    const deleteProduct = await db.product.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        data: deleteProduct,
+        message: "delete product succesfully",
       },
       { status: 201 }
     );
