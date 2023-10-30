@@ -1,4 +1,5 @@
 import { useStore } from "@/store/page";
+import { signOut } from "next-auth/react";
 import { AiOutlinePoweroff } from "react-icons/ai";
 function Navbar() {
   const title = useStore((state) => state.title);
@@ -10,7 +11,12 @@ function Navbar() {
         className="tooltip tooltip-bottom tooltip-secondary"
         data-tip="Logout"
       >
-        <AiOutlinePoweroff size="25" color="white" className="cursor-pointer" />
+        <AiOutlinePoweroff
+          onClick={() => signOut()}
+          size="25"
+          color="white"
+          className="cursor-pointer"
+        />
       </div>
     </div>
   );

@@ -1,15 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { PiEyeClosedLight } from "react-icons/pi";
-import { PiEyeLight } from "react-icons/pi";
 import { toast } from "react-toastify";
 
 import Card from "@/components/Card";
 import TextInput from "@/components/TextInput";
-import Button from "@/components/Button";
+import Buttons from "@/components/Button";
 import UploadImage from "@/components/UploadImage";
 import Images from "@/components/Image";
 
@@ -24,54 +21,99 @@ type IFormInput = {
 type PropsForm = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mutate: any;
+  editData: any;
+  titleModal: string;
 };
 
-export default function AddStore({ setOpen, mutate }: PropsForm) {
+export default function AddStore({
+  setOpen,
+  mutate,
+  editData,
+  titleModal,
+}: PropsForm) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [imgId, setImgId] = useState("");
   const {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<IFormInput>();
 
-  const router = useRouter();
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    setIsSubmit(true);
-    const response = await fetch("/api/store", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        img: imgId,
-        address: data.address,
-        email: data.email,
-        phone: data.phone,
-      }),
-    });
-
-    if (response.status === 201) {
+  useEffect(() => {
+    if (titleModal === "Edit Store") {
+      reset(editData);
+      setImgId(editData.img);
+    } else {
       reset({ name: "", address: "", email: "", phone: "" });
       setImgId("");
-      toast.success("Add Store Successful", {
-        position: toast.POSITION.TOP_CENTER,
+    }
+  }, [editData, titleModal]);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    if (titleModal === "Add Store") {
+      setIsSubmit(true);
+      const response = await fetch("/api/store", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          img: imgId,
+          address: data.address,
+          email: data.email,
+          phone: data.phone,
+        }),
       });
-      //   mutate("/api/product");
-      setIsSubmit(false);
-      setOpen(false);
+
+      if (response.status === 201) {
+        reset({ name: "", address: "", email: "", phone: "" });
+        setImgId("");
+        toast.success("Add Store Successful", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        mutate("/api/store");
+        setIsSubmit(false);
+        setOpen(false);
+      } else {
+        setIsSubmit(false);
+      }
     } else {
-      setIsSubmit(false);
+      setIsSubmit(true);
+      const response = await fetch(`/api/store/${editData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          img: imgId,
+          address: data.address,
+          email: data.email,
+          phone: data.phone,
+        }),
+      });
+
+      if (response.status === 201) {
+        reset({ name: "", address: "", email: "", phone: "" });
+        toast.success("Update Store Successful", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        mutate("/api/product");
+        setIsSubmit(false);
+        setOpen(false);
+      } else {
+        setIsSubmit(false);
+      }
     }
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card customCss="w-full border-none">
-          {imgId !== "" ? (
+        <Card customCss="w-full border-none ">
+          {imgId !== "" || titleModal === "Edit Store" ? (
             <div className="flex justify-center">
               <Images img={imgId} width={100} height={100} />
             </div>
@@ -87,6 +129,7 @@ export default function AddStore({ setOpen, mutate }: PropsForm) {
               <TextInput
                 type="text"
                 label="name"
+                defaultValue={editData.name}
                 placeholder="masukan nama produk"
                 {...field}
               />
@@ -101,6 +144,7 @@ export default function AddStore({ setOpen, mutate }: PropsForm) {
               <TextInput
                 type="text"
                 label="address"
+                defaultValue={editData.address}
                 placeholder="address"
                 {...field}
               />
@@ -118,6 +162,7 @@ export default function AddStore({ setOpen, mutate }: PropsForm) {
               <TextInput
                 type="email"
                 label="email"
+                defaultValue={editData.email}
                 placeholder="email"
                 {...field}
               />
@@ -133,6 +178,7 @@ export default function AddStore({ setOpen, mutate }: PropsForm) {
               <TextInput
                 type="text"
                 label="phone"
+                defaultValue={editData.phone}
                 placeholder="phone"
                 {...field}
               />
@@ -140,7 +186,7 @@ export default function AddStore({ setOpen, mutate }: PropsForm) {
           />
           {errors.phone && <p className="text-red-500">phone is required</p>}
 
-          <Button disable={isSubmit} title="Submit" />
+          <Buttons disable={isSubmit} title="Submit" />
         </Card>
       </form>
     </>

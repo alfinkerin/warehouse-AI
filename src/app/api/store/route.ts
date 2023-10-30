@@ -67,31 +67,3 @@ export async function GET() {
     );
   }
 }
-
-// export async function DELETE(
-//   req: Request,
-//   { params }: { params: { id: string } }
-// ) {
-//   try {
-//     const deleteProduct = await db.product.delete({
-//       where: {
-//         id: params.id,
-//       },
-//     });
-
-//     return NextResponse.json(
-//       {
-//         data: deleteProduct,
-//         message: "delete product succesfully",
-//       },
-//       { status: 201 }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       {
-//         message: "Something went wrong",
-//       },
-//       { status: 500 }
-//     );
-//   }
-// }

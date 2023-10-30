@@ -12,7 +12,7 @@ import { PiEyeLight } from "react-icons/pi";
 
 import Card from "@/components/Card";
 import TextInput from "@/components/TextInput";
-import Button from "@/components/Button";
+import Buttons from "@/components/Button";
 
 type IFormInput = {
   email: string;
@@ -104,7 +104,7 @@ export default function Login() {
           {errors.password && (
             <p className="text-red-500">Password is required</p>
           )}
-          <Button disable={isSubmit} title="Login" />
+          <Buttons disable={isSubmit} title="Login" />
           <p className="text-base text-center">
             Dont have an account ?{" "}
             <Link className="text-blue-400" href="/screen/auth/register">

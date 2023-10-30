@@ -26,7 +26,6 @@ export default function RootLayout({
         <Provider>
           <EdgeStoreProvider>{children}</EdgeStoreProvider>
         </Provider>
-        <ToastContainer autoClose={4000} />
       </body>
     </html>
   );

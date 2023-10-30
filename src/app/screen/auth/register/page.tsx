@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 import Card from "@/components/Card";
 import TextInput from "@/components/TextInput";
-import Button from "@/components/Button";
+import Buttons from "@/components/Button";
 
 type IFormInput = {
   email: string;
@@ -120,7 +120,7 @@ export default function Register() {
             <p className="text-red-500">Password is required</p>
           )}
 
-          <Button disable={isSubmit} title="Submit" />
+          <Buttons disable={isSubmit} title="Submit" />
         </Card>
       </form>
     </>

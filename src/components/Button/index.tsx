@@ -12,7 +12,7 @@ type ButtonProps = {
   onClick?: any;
 };
 
-function Button({
+function Buttons({
   title,
   type,
   variant,
@@ -42,4 +42,4 @@ function Button({
   );
 }
 
-export default Button;
+export default Buttons;

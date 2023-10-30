@@ -11,18 +11,6 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "stock" INTEGER NOT NULL,
-    "price" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updateAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Store" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -34,6 +22,19 @@ CREATE TABLE "Store" (
     "updateAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Store_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "stock" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL,
+    "store" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

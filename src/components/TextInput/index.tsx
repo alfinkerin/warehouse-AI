@@ -7,6 +7,7 @@ type CardProps = {
   type: string;
   Icon?: ReactElement;
   onClick?: MouseEventHandler;
+  defaultValue?: string;
 };
 
 function TextInput({
@@ -15,6 +16,7 @@ function TextInput({
   type,
   Icon,
   onClick,
+  defaultValue,
   ...props
 }: CardProps) {
   return (
@@ -25,6 +27,7 @@ function TextInput({
       <div className=" relative">
         <input
           type={type}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           className="input input-bordered w-full  bg-white pr-12"
           {...props}
