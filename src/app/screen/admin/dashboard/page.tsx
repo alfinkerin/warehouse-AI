@@ -1,3 +1,5 @@
+"use client";
+
 import Card from "@/components/Card";
 import Chart from "@/components/Chart";
 import React from "react";
