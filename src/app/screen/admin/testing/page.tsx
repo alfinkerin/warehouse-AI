@@ -1,3 +1,5 @@
+"use client";
+
 import { fetcher } from "@/hooks/useHookSwr";
 import { Produk, columns } from "./columns";
 import { DataTable } from "./data-table";

@@ -1,7 +1,7 @@
+"use client";
+
 import React from "react";
 
-import { SingleImageDropzone } from "@/components/UploadImage";
-import { useEdgeStore } from "@/lib/edgestore";
 function Gallery() {
   // const [file, setFile] = useState<File>();
   // const { edgestore } = useEdgeStore();

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Images from "@/components/Image";
 import { FiEdit } from "react-icons/fi";
