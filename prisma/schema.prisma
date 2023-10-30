@@ -41,3 +41,10 @@ model Product {
   updateAt DateTime @updatedAt
 }
 
+model Gallery {
+  id String @id @default(cuid())
+  img String
+  name String
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}

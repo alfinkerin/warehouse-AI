@@ -1,21 +1,15 @@
 
-# WAI - Warehouse with AI
+# WHA - Warehouse with AI
 
-A state-of-the-art facility powered by AI technology. It ensures real-time inventory tracking, swift order fulfillment, predictive maintenance, and heightened security. AI processes data for smart decision-making, optimizing space and enhancing sustainability. This streamlined approach reshapes logistics, ensuring maximum efficiency and accuracy in every operation.
-
-
-
-
+An application for managing product stock and recording all product expenditure traces from the warehouse to the stores, with image galleries and employee payroll capabilities, is assisted by AI technology derived from Open AI
 
 
 ## Demo
-
-email: testing@gmail.com
-password: 12345678
+warehouse-ai.vercel.app
 
 ## Tech Stack
 
-**Fullstack:** NextJs , Prisma , Tailwind
+ NextJs , Prisma , Tailwind, Chat GPT
 
 
 

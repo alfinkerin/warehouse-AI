@@ -15,6 +15,7 @@ import Payroll from "./payroll/page";
 import History from "./history/page";
 import DemoPage from "./testing/page";
 import Store from "./store/page";
+import Gallery from "./gallery/page";
 
 function AdminPage() {
   const [isSliderMenu, SetIsSliderMenu] = useState(true);
@@ -32,6 +33,8 @@ function AdminPage() {
         return <Store />;
       case "Product":
         return <Product />;
+      case "Gallery":
+        return <Gallery />;
       case "History":
         return <History />;
       case "Payroll":
