@@ -8,12 +8,25 @@ import { fetcher } from "@/hooks/useHookSwr";
 import AddStore from "./addStore";
 import CardImgOnSide from "@/app/screen/admin/store/CardImgOnSide";
 import { FaStoreAltSlash } from "react-icons/fa";
+import TextInput from "@/components/TextInput";
 
 function Store() {
   const [open, setOpen] = useState(false);
   const [titleModal, setTitleModal] = useState("");
-  const { data, mutate } = useSWR("/api/store", fetcher);
   const [editData, setEditData] = useState({});
+  const [query, setQuery] = useState("");
+
+  const { data, mutate } = useSWR("/api/store", fetcher);
+
+  const searchFilter = (array: any) => {
+    return array?.filter((el: any) => el?.name.includes(query));
+  };
+
+  const filtered = searchFilter(data?.data);
+
+  const handleFilter = (e: any) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <>
@@ -42,6 +55,13 @@ function Store() {
             }}
           />
         </div>
+        <div className="w-52">
+          <TextInput
+            type="text"
+            onChange={handleFilter}
+            placeholder="Filter by Name.."
+          />
+        </div>
       </div>
       <div className="flex flex-wrap gap-6">
         {data?.data?.length === 0 ? (
@@ -51,7 +71,7 @@ function Store() {
           </div>
         ) : (
           <CardImgOnSide
-            data={data?.data}
+            data={filtered}
             mutate={mutate}
             setOpen={setOpen}
             setTitleModal={setTitleModal}

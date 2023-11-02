@@ -8,6 +8,7 @@ type PropsImg = {
   fillBackground?: any;
   text?: string;
   overlays?: any;
+  gravity?: string;
 };
 
 function Images({
@@ -18,6 +19,7 @@ function Images({
   crop,
   text,
   overlays,
+  gravity,
 }: PropsImg) {
   return (
     <>
@@ -30,6 +32,7 @@ function Images({
         overlays={overlays}
         alt="Description of my image"
         fillBackground={fillBackground}
+        gravity={gravity}
       />
     </>
   );

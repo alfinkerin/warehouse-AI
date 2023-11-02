@@ -13,6 +13,7 @@ import { PiEyeLight } from "react-icons/pi";
 import Card from "@/components/Card";
 import TextInput from "@/components/TextInput";
 import Buttons from "@/components/Button";
+import GoogleLogin from "@/components/Login/google";
 
 type IFormInput = {
   email: string;
@@ -55,14 +56,13 @@ export default function Login() {
   };
 
   return (
-    <>
-      <form
-        className="w-full h-full flex justify-center items-center "
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Card customCss="w-[70%] border-none">
-          <div className="card-title self-center uppercase">Login</div>
-          <div className="self-center text-base ">
+    <div className="w-full h-full flex justify-center items-center ">
+      <Card customCss="w-[70%] border-none">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="text-lg font-semibold  uppercase text-center">
+            Login
+          </div>
+          <div className=" text-base text-center ">
             Warehouse Management with AI
           </div>
           <Controller
@@ -104,15 +104,16 @@ export default function Login() {
           {errors.password && (
             <p className="text-red-500">Password is required</p>
           )}
-          <Buttons disable={isSubmit} title="Login" />
+          <Buttons customCss="w-full" disable={isSubmit} title="Login" />
           <p className="text-base text-center">
             Dont have an account ?{" "}
             <Link className="text-blue-400" href="/screen/auth/register">
               Register
             </Link>
           </p>
-        </Card>
-      </form>
-    </>
+        </form>
+        <GoogleLogin />
+      </Card>
+    </div>
   );
 }

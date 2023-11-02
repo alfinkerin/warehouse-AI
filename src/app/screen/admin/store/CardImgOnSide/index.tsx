@@ -70,14 +70,20 @@ function CardImgOnSide({
           className="card card-side bg-white  h-[13rem] w-[29rem] shadow-2xl drop-shadow-lg "
         >
           <figure>
-            <Images img={x?.img} width={960} height={600} />
+            <Images
+              img={x?.img}
+              width={960}
+              height={600}
+              crop="thumb"
+              gravity="auto"
+            />
           </figure>
           <div className="card-body w-64">
             <h2 className="card-title truncate">{x?.name}</h2>
             <p className="truncate ">{x?.address}</p>
             <p className="truncate ">{x?.email}</p>
             <p className="truncate ">{x?.phone}</p>
-            <div className="card-actions justify-end mt-2">
+            <div className="card-actions justify-end flex gap-2">
               <FiEdit
                 onClick={async () => {
                   const response = await fetch(`/api/store/${x.id}`, {
@@ -89,8 +95,7 @@ function CardImgOnSide({
                   setOpen(true);
                 }}
                 size="20"
-                color="green"
-                className="cursor-pointer"
+                className="cursor-pointer text-secondary hover:text-green-300"
               />
               <div className="">
                 <MdDelete
@@ -99,8 +104,7 @@ function CardImgOnSide({
                     setDeleteId(x.id);
                   }}
                   size="20"
-                  color="red"
-                  className="cursor-pointer"
+                  className="cursor-pointer text-secondary hover:text-red-300"
                 />
               </div>
 
@@ -108,9 +112,8 @@ function CardImgOnSide({
                 <SheetTrigger>
                   <MdOutlineRemoveRedEye
                     onClick={() => singleId(x.id)}
-                    size="20"
-                    color="blue"
-                    className="cursor-pointer"
+                    size="22"
+                    className="cursor-pointer text-secondary hover:text-blue-300"
                   />
                 </SheetTrigger>
 

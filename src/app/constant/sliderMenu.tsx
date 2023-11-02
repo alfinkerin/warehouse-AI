@@ -33,8 +33,4 @@ export const menuSlide = [
     title: "Payroll",
     icon: FaMoneyCheckAlt,
   },
-  {
-    title: "Testing",
-    icon: FaMoneyCheckAlt,
-  },
 ];

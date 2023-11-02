@@ -33,7 +33,7 @@ function Buttons({
           {title}
         </button>
       ) : (
-        <button className="btn cursor-wait">
+        <button className={`btn ${customCss} cursor-wait`}>
           <span className="loading loading-spinner"></span>
           loading
         </button>

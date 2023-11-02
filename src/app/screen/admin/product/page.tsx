@@ -209,24 +209,6 @@ function Product() {
               setTitleModal("Add Product");
             }}
           />
-          <Buttons
-            title="Outbound Product"
-            customCss="btn-outline"
-            type="submit"
-            onClick={() => {
-              setOpen(true);
-              setTitleModal("Add Product");
-            }}
-          />
-          <Buttons
-            title="Inbound Product"
-            customCss="btn-outline"
-            type="submit"
-            onClick={() => {
-              setOpen(true);
-              setTitleModal("Add Product");
-            }}
-          />
         </div>
         <DownloadExcel data={filteredData()} />
       </div>

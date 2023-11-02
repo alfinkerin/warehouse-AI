@@ -8,6 +8,7 @@ type CardProps = {
   Icon?: ReactElement;
   onClick?: MouseEventHandler;
   defaultValue?: string;
+  onChange?: any;
 };
 
 function TextInput({
@@ -16,17 +17,22 @@ function TextInput({
   type,
   Icon,
   onClick,
+  onChange,
   defaultValue,
   ...props
 }: CardProps) {
   return (
     <div className="form-control w-full ">
-      <label className="label">
-        <span className="label-text uppercase">{label}</span>
-      </label>
+      {label !== undefined && (
+        <label className="label">
+          <span className="label-text uppercase">{label}</span>
+        </label>
+      )}
+
       <div className=" relative">
         <input
           type={type}
+          onChange={onChange}
           defaultValue={defaultValue}
           placeholder={placeholder}
           className="input input-bordered w-full  bg-white pr-12"

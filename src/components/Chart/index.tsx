@@ -3,49 +3,49 @@ import {
   Legend,
   Line,
   LineChart,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
 
 const data = [
-  { bulan: "Januari", react: 32, angular: 37, vue: 60 },
-  { bulan: "Februari", react: 42, angular: 42, vue: 54 },
-  { bulan: "Maret", react: 51, angular: 41, vue: 54 },
-  { bulan: "April", react: 60, angular: 37, vue: 28 },
-  { bulan: "Mei", react: 51, angular: 31, vue: 27 },
-  { bulan: "Juni", react: 95, angular: 44, vue: 49 },
-  { bulan: "Juli", react: 95, angular: 44, vue: 49 },
-  { bulan: "Agustus", react: 95, angular: 44, vue: 49 },
-  { bulan: "September", react: 95, angular: 44, vue: 49 },
-  { bulan: "Oktober", react: 95, angular: 44, vue: 49 },
-  { bulan: "November", react: 95, angular: 44, vue: 49 },
-  { bulan: "Desember", react: 95, angular: 44, vue: 49 },
+  { bulan: "Januari", Rose: 32, Wishes: 37, Liliya: 60 },
+  { bulan: "Februari", Rose: 42, Wishes: 42, Liliya: 54 },
+  { bulan: "Maret", Rose: 51, Wishes: 41, Liliya: 54 },
+  { bulan: "April", Rose: 60, Wishes: 37, Liliya: 28 },
+  { bulan: "Mei", Rose: 51, Wishes: 31, Liliya: 27 },
+  { bulan: "Juni", Rose: 95, Wishes: 44, Liliya: 49 },
+  { bulan: "Juli", Rose: 32, Wishes: 22, Liliya: 12 },
+  { bulan: "Agustus", Rose: 53, Wishes: 32, Liliya: 12 },
+  { bulan: "September", Rose: 12, Wishes: 31, Liliya: 78 },
+  { bulan: "Oktober", Rose: 23, Wishes: 12, Liliya: 44 },
+  { bulan: "November", Rose: 86, Wishes: 30, Liliya: 77 },
+  { bulan: "Desember", Rose: 11, Wishes: 22, Liliya: 33 },
 ];
 
 export default function Chart() {
   return (
-    <div className="my-2">
-      <LineChart width={window.screen.width / 2} height={300} data={data}>
+    <ResponsiveContainer>
+      <LineChart data={data}>
+        <Line type="monotone" dataKey="Rose" stroke="#f0657c" strokeWidth={1} />
         <Line
           type="monotone"
-          dataKey="react"
-          stroke="#2196F3"
+          dataKey="Wishes"
+          stroke="#d8fa17"
           strokeWidth={1}
         />
         <Line
           type="monotone"
-          dataKey="angular"
-          stroke="#F44236"
+          dataKey="Liliya"
+          stroke="#e90bde"
           strokeWidth={1}
         />
-        <Line type="monotone" dataKey="vue" stroke="#FFCA29" strokeWidth={1} />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="bulan" />
         <YAxis />
         <Tooltip />
-        <Legend />
       </LineChart>
-    </div>
+    </ResponsiveContainer>
   );
 }

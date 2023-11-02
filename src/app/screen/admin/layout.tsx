@@ -14,7 +14,7 @@ async function LayoutAdmin({ children }: LayoutAdminProps) {
   if (!session) {
     return redirect("/");
   }
-  return <div className="flex gap-6">{children}</div>;
+  return <div className="flex gap-6 min-h-screen">{children}</div>;
 }
 
 export default LayoutAdmin;

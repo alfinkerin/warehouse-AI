@@ -46,7 +46,7 @@ export default function AddGallery({ setOpen, mutate }: PropsForm) {
     if (response.status === 201) {
       reset({ name: "" });
       setImgId("");
-      toast.success("Add Store Successful", {
+      toast.success("Add Image Successful", {
         position: toast.POSITION.TOP_CENTER,
       });
       mutate("/api/store");

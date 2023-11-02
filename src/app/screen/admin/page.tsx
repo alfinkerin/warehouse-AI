@@ -13,7 +13,6 @@ import { useStore } from "@/store/page";
 import Product from "./product/page";
 import Payroll from "./payroll/page";
 import History from "./history/page";
-import DemoPage from "./testing/page";
 import Store from "./store/page";
 import Gallery from "./gallery/page";
 
@@ -39,22 +38,20 @@ function AdminPage() {
         return <History />;
       case "Payroll":
         return <Payroll />;
-      case "Testing":
-        return <DemoPage />;
     }
   };
 
   return (
     <>
       <div
-        className={`min-h-screen bg-gradient-to-b from-[#A951A3] to-[#f582e9] shadow-md ${
+        className={`min-h-screen fixed flex flex-col justify-between bg-gradient-to-b from-[#A951A3] to-[#f582e9] shadow-md ${
           isSliderMenu === true ? "w-64 px-8 py-12 " : "w-20 p-4"
         } duration-500 `}
       >
         <div className="text-white relative h-full">
           <div
             onClick={() => SetIsSliderMenu(!isSliderMenu)}
-            className={`absolute  top-[50%] py-1 px-1 rounded-full bg-primary cursor-pointer ${
+            className={`absolute  top-[89%] py-1 px-1 rounded-full bg-primary cursor-pointer ${
               isSliderMenu === true ? "right-[-47px]" : "right-[-32px]"
             } `}
           >
@@ -87,32 +84,44 @@ function AdminPage() {
                 </div>
               ))}
             </div>
-            <div className="w-full items-center">
-              {isSliderMenu === true ? (
-                <div className="flex items-center">
-                  <div className="w-14">
-                    <Lottie animationData={animationData} />
-                  </div>
-
-                  <div className="text-base">{session?.user?.username}</div>
-                </div>
-              ) : (
-                <div
-                  className="tooltip tooltip-right tooltip-secondary"
-                  data-tip={session?.user?.username}
-                >
-                  <Lottie animationData={animationData} />
-                </div>
-              )}
-            </div>
           </div>
         </div>
+        <div className="w-full items-center">
+          {isSliderMenu === true ? (
+            <div className="flex items-center">
+              <div className="w-14">
+                <Lottie animationData={animationData} />
+              </div>
+
+              <div className="text-base text-white">
+                {session?.user?.username === null
+                  ? "Anonymous"
+                  : session?.user?.username}
+              </div>
+            </div>
+          ) : (
+            <div
+              className="tooltip tooltip-right tooltip-secondary"
+              data-tip={
+                session?.user?.username === null
+                  ? "Anonymous"
+                  : session?.user?.username
+              }
+            >
+              <Lottie animationData={animationData} />
+            </div>
+          )}
+        </div>
       </div>
-      <div className="flex flex-col gap-4 pt-2 w-full mr-8">
+      <div
+        className={`flex flex-col gap-4 pt-2 w-full  mr-8  ${
+          isSliderMenu === true ? "ml-[18rem]" : "ml-[7rem]"
+        } duration-500`}
+      >
         <div className=" border-b-2 border-primary ">
           <Navbar />
         </div>
-        <div className="bg-white py-8 px-6 rounded-2xl">{switchPage()}</div>
+        <div className="bg-white  py-8 px-6 rounded-2xl">{switchPage()}</div>
       </div>
     </>
   );
