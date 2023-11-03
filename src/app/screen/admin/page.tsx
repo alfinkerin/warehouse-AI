@@ -15,6 +15,13 @@ import History from "./history/page";
 import Store from "./store/page";
 import Gallery from "./gallery/page";
 import Employee from "./employee/page";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
+import { Modal } from "@/components/Modal";
 
 function AdminPage() {
   const [isSliderMenu, SetIsSliderMenu] = useState(true);
@@ -43,6 +50,13 @@ function AdminPage() {
 
   return (
     <>
+      <MobileView>
+        <Modal open={true}>
+          <div className="w-full flex item-center justify-center">
+            <span>Please Open Website using Dekstop</span>
+          </div>
+        </Modal>
+      </MobileView>
       <div
         className={`min-h-screen fixed flex flex-col justify-between bg-gradient-to-b from-[#A951A3] to-[#f582e9] shadow-md ${
           isSliderMenu === true ? "w-64 px-8 py-12 " : "w-20 p-4"
