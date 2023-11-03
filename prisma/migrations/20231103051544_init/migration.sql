@@ -99,6 +99,19 @@ CREATE TABLE "History" (
     CONSTRAINT "History_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Employee" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "income" INTEGER NOT NULL,
+    "position" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Employee_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 

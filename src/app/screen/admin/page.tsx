@@ -11,10 +11,10 @@ import Navbar from "@/components/Navbar";
 import Dashboard from "./dashboard/page";
 import { useStore } from "@/store/page";
 import Product from "./product/page";
-import Payroll from "./payroll/page";
 import History from "./history/page";
 import Store from "./store/page";
 import Gallery from "./gallery/page";
+import Employee from "./employee/page";
 
 function AdminPage() {
   const [isSliderMenu, SetIsSliderMenu] = useState(true);
@@ -36,8 +36,8 @@ function AdminPage() {
         return <Gallery />;
       case "History":
         return <History />;
-      case "Payroll":
-        return <Payroll />;
+      case "Employee":
+        return <Employee />;
     }
   };
 

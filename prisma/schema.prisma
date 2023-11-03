@@ -110,3 +110,13 @@ model History {
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
+
+model Employee {
+  id String @id @default(cuid())
+  name String
+  income Int
+  position String
+  email String
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}

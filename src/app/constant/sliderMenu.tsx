@@ -29,8 +29,4 @@ export const menuSlide = [
     title: "Employee",
     icon: BsPeopleFill,
   },
-  {
-    title: "Payroll",
-    icon: FaMoneyCheckAlt,
-  },
 ];
