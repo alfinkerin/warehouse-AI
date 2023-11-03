@@ -8,7 +8,9 @@ type PropsGoogle = {
 
 function GoogleLogin({ children }: PropsGoogle) {
   const loginWithGoogle = () =>
-    signIn("google", { callbackUrl: "http://localhost:3000/screen/admin" });
+    signIn("google", {
+      callbackUrl: "https://warehouse-ai.vercel.app/screen/admin",
+    });
   return (
     <Buttons
       customCss="btn-outline"
